@@ -54,8 +54,12 @@ function splitPartition(partition, direction) {
   const removeButton = document.createElement("button");
   removeButton.innerText = "-";
   removeButton.addEventListener("click", (e) => {
-    e.target.parentNode.parentNode.parentNode.removeChild(newPartition);
-    // console.log(e.target.parentNode.parentNode.parentNode.parentNode);
+    let parentNodeDiv = e.target.parentNode.parentNode.parentNode;
+    if (parentNodeDiv.childNodes.length == 2) {
+      parentNodeDiv.removeChild(newPartition);
+    } else {
+      parentNodeDiv.parentNode.removeChild(parentNodeDiv);
+    }
   });
 
   buttonContainer.appendChild(vButton);
